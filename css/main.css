@@ -1,4 +1,9 @@
 body{
 background: #b5e4ff;
+/* Firefox */
+	background: -moz-linear-gradient(top, rgba(181, 228, 255, 1) 0%, rgba(144, 165, 214, 1) 100%);
+	/* Chrome , Safari */
+	background: -webkit-linear-gradient(top, rgba(181, 228, 255, 1) 0%, rgba(144, 165, 214, 1) 100%);
+
 background: linear-gradient(180deg, rgba(181, 228, 255, 1) 0%, rgba(144, 165, 214, 1) 100%);
 }
