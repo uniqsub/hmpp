@@ -1,4 +1,4 @@
-jQuery(function($) {
+function($) {
       // ヘッダーの高さを代入する処理
       function setHeaderHeights() {
         var commonHeaderHeight = $("header").outerHeight();
