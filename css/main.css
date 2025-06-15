@@ -3,6 +3,8 @@ background: #d4eeff;
 background: -webkit-linear-gradient(180deg,rgba(212, 238, 255, 1) 0%, rgba(220, 219, 255, 1) 100%);
 background: -moz-linear-gradient(180deg,rgba(212, 238, 255, 1) 0%, rgba(220, 219, 255, 1) 100%);
 background: linear-gradient(180deg,rgba(212, 238, 255, 1) 0%, rgba(220, 219, 255, 1) 100%);
+font-family: 'Noto Sans JP', sans-serif;
+text-align: center;
 }
 
 html {
