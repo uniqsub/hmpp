@@ -1,58 +1,48 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/menu.css">
-      <link rel="stylesheet" href="css/main.css">
-      <script src="js/menu.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  </head>
-  <body>
-  <!-- レスポンシブ込みの追従ヘッダー -->
-  <header class="header">
-    <div class="header-container">
-
-      <h1 class="header-logo">
-        <a href="#" id="logo" class="logo-link">
-          <img src="https://plot-hub.com/code_example/lib/img/logo.jpg" alt="">
-        </a>
-      </h1>
-
-      <nav id="hb-menu" class="nav-menu">
-        <ul class="menu-list">
-          <li class="menu-item"><a href="#" class="menu-link">MENU1</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">MENU2</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">MENU3</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">MENU4</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">MENU5</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">MENU6</a></li>
-        </ul>
-      </nav>
-
-      <!-- ハンバーガーメニュー ボタン -->
-      <button id="openbtn" class="hamburger-button">
-        <div class="hamburger-lines">
-          <span class="line"></span>
-          <span class="line"></span>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+</head>
+<body>
+    <!-- レスポンシブ込みの追従ヘッダー ここまで -->
+    <h1><span class="satcol">6/21(土)</span>、<span class="suncol">6/22(日)</span></h1>
+    <p><span class="smalltext">※6/21は午後のみ保護者公開、6/22は一般公開です。</span></p>
+    <h2>フロアマップ</h2>
+    <div class="slide">
+        <div>
+            <img src="image/floor_0.png">
+            <p>一階</p>
         </div>
-      </button>
-      <!-- ハンバーガーメニュー ボタン ここまで -->
-
+        <div>
+            <img src="image/floor_1.png">
+            <p>二階</p>
+        </div>
+        <div>
+            <img src="image/floor_2.png">
+            <p>三階</p>
+        </div>
+        <div>
+            <img src="image/floor_3.png">
+            <p>四階</p>
+        </div>
     </div>
-  </header>
-  <!-- レスポンシブ込みの追従ヘッダー ここまで -->
-  <h1><span class="satcol">6/21(土)</span>、<span class="suncol">6/22(日)</span></h1>
-  <p><span class="smalltext">※6/21は午後のみ保護者公開、6/22は一般公開です。</span></p>
-  <h2>フロアマップ</h2>
-  <h2>各団体ホームページ</h2>
-  <h2>タイムテーブル</h2>
-  <h2>来場時の注意</h2>
-  <h2>アクセス</h2>
-  <div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3253.220252289754!2d139.9330105!3d35.3749929!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60180ca639d5fa99%3A0xee91501d3fb5dbed!2z5Y2D6JGJ55yM56uL5pyo5pu05rSl6auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1749961472636!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
+    <h2>各団体ホームページ</h2>
+    <h2>タイムテーブル</h2>
+    <h2>来場時の注意</h2>
+    <h2>アクセス</h2>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3253.220253390818!2d139.9304355757741!3d35.37499287268762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60180ca639d5fa99%3A0xee91501d3fb5dbed!2z5Y2D6JGJ55yM56uL5pyo5pu05rSl6auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1750005639865!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/slide.js"></script>
 </body>
 </html>

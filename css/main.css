@@ -9,21 +9,29 @@ font-family: 'Noto Sans JP', sans-serif;
 text-align: center;
 }
 
+img {
+    max-width: 75%; /*この記述で画面幅の100%の幅で画像を表示する*/
+    height: auto; /*高さはautoで画像の最適化表示*/
+}
+
 html {
 	min-height: 100%;
 }
 
-.satcol{
+.satcol {
     color: rgb(52, 168, 235);
+    font-size: +2;
 }
 
-.suncol{
+.suncol {
     color: rgb(255, 92, 92);
+    font-size: +2;
 }
 
 .smalltext{
-    font-size: 3.44vw;
+    font-size: 75%;
 }
+
 
 .map {
     position: relative;
