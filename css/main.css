@@ -20,3 +20,7 @@ html {
 .suncol{
     color: rgb(255, 92, 92);
 }
+
+.smalltext{
+    font-size: 3.44vw;
+}
