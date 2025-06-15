@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>異世界転生演劇 〜君の剣が導く運命〜</title>
+  <!-- フォント等 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts例: Noto Serif JP -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Pico.css（軽量フレームワーク） -->
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+
+  <!-- AOS for scroll animations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+  <style>
+    /* 基本スタイル上書き・カスタム */
+    body {
+      font-family: 'Noto Serif JP', serif;
+      background: #fafafa;
+      background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* ロゴテキストのアニメーション */
+    @keyframes logo-float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      animation: logo-float 3s ease-in-out infinite;
+      line-height: 1.2;
+    }
+    /* PVセクションのレスポンシブ動画ボックス */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    /* セクションの共通スタイル */
+    main section {
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    main section h2 {
+      font-size: 1.6rem;
+      border-left: 6px solid #9b59b6;
+      padding-left: 10px;
+      margin-bottom: 16px;
+      color: #34495e;
+    }
+    /* 登場人物 */
+    .character {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .character img {
+      width: 100px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    .character div {
+      flex: 1;
+    }
+    /* ボタン風リンク例 */
+    .btn-primary {
+      display: inline-block;
+      padding: 0.6em 1.2em;
+      border-radius: 4px;
+      background: #9b59b6;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    /* フッター */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f2f2f2;
+      font-size: 0.9em;
+      color: #666;
+    }
+    /* メディアクエリ */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .character {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .character img {
+        margin-bottom: 10px;
+      }
+    }
+    /* 背景装飾アニメーション例（任意）*/
+    @keyframes bg-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(270deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+      pointer-events: none;
+      animation: bg-shift 20s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- ロゴ画像を使いたい場合は以下に <img> を追加 -->
+    <!-- <img src="images/logo.png" alt="ロゴ" style="max-width:200px; display:block; margin:0 auto 20px;"> -->
+    <h1 data-aos="zoom-in">異世界転生演劇<br>〜君の剣が導く運命〜</h1>
+  </header>
+
+  <main>
+    <!-- PVセクション -->
+    <section id="pv" data-aos="fade-up">
+      <h2>プロモーションビデオ（PV）</h2>
+      <div class="video-container" data-aos="zoom-in">
+        <!-- YouTube埋め込み例: 動画IDを差し替えてください -->
+        <iframe 
+          src="https://www.youtube.com/embed/あなたの動画ID" 
+          title="PV: 異世界転生演劇 〜君の剣が導く運命〜" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p>※再生ボタンをクリックしてPVをご覧ください。</p>
+    </section>
+
+    <!-- あらすじ -->
+    <section id="synopsis" data-aos="fade-right">
+      <h2>あらすじ</h2>
+      <p>
+        ブラック企業に勤める青年・和也は、ある日異世界へと転移してしまう。<br>
+        剣と魔法の世界で目覚めた彼は、運命の少女と出会い、「滅びの予言」を覆す旅に出る――。<br>
+        果たして彼は、元の世界に戻るのか？ それともこの世界を選ぶのか？<br>
+        これは、一人の青年が「選択」と「希望」を見つける物語。
+      </p>
+    </section>
+
+    <!-- 登場人物 -->
+    <section id="characters" data-aos="fade-left">
+      <h2>登場人物</h2>
+      <div class="character" data-aos="fade-up" data-aos-delay="100">
+        <img src="https://via.placeholder.com/100x150" alt="和也">
+        <div>
+          <strong>和也（CV: 山田 太郎）</strong><br>
+          異世界に転移した元社畜。剣の才能が覚醒していく。
+        </div>
+      </div>
+      <div class="character" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://via.placeholder.com/100x150" alt="リリア">
+        <div>
+          <strong>リリア（CV: 鈴木 花子）</strong><br>
+          謎多き巫女。和也の運命を導く少女。
+        </div>
+      </div>
+      <div class="character" data-aos="fade-up" data-aos-delay="300">
+        <img src="https://via.placeholder.com/100x150" alt="ガルド">
+        <div>
+          <strong>ガルド（CV: 佐藤 一郎）</strong><br>
+          元騎士団長。和也に厳しくも温かい指導を行う。
+        </div>
+      </div>
+    </section>
+
+    <!-- 上演時間 -->
+    <section id="schedule" data-aos="fade-up">
+      <h2>上演時間</h2>
+      <p>
+        ● 開演：2025年7月13日（日）<br>
+        ● 昼の部：13:00〜 / 夜の部：18:00〜<br>
+        ※開場は各30分前。<br>
+        ※上演時間は約2時間（途中休憩あり）です。
+      </p>
+    </section>
+
+    <!-- キャストからの一言 -->
+    <section id="cast-message" data-aos="fade-up">
+      <h2>キャストからの一言</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        <strong>山田 太郎（和也 役）:</strong><br>
+        「誰もが抱える“選択”を、全力で演じました。ぜひ劇場でご覧ください！」<br><br>
+      </p>
+      <p data-aos="fade-up" data-aos-delay="200">
+        <strong>鈴木 花子（リリア 役）:</strong><br>
+        「リリアの想いが、あなたの心に届きますように。」<br><br>
+      </p>
+      <p data-aos="fade-up" data-aos-delay="300">
+        <strong>佐藤 一郎（ガルド 役）:</strong><br>
+        「この作品を通じて、異世界の深さを感じていただければ幸いです。」
+      </p>
+    </section>
+
+    <!-- アクセス情報 -->
+    <section id="access" data-aos="fade-up">
+      <h2>アクセス</h2>
+      <p>
+        ● 会場：○○市民ホール 大ホール<br>
+        ● 住所：東京都○○区1-2-3 ○○ビル 4F<br>
+        ● 最寄駅：○○駅 東口から徒歩5分<br>
+        <a class="btn-primary" href="https://maps.google.com" target="_blank" rel="noopener">Googleマップで見る</a>
+      </p>
+    </section>
+  </main>
+
+  <footer data-aos="fade-in">
+    &copy; 2025 異世界転生演劇制作委員会
+  </footer>
+
+  <!-- AOSスクリプト -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-quart',
+        once: true, // スクロールで一度だけアニメーション
+        offset: 100,
+      });
+    });
+  </script>
+
+  <!-- 任意：IntersectionObserver で追加アニメーション -->
+  <!--
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const els = document.querySelectorAll('.animate-on-scroll');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      els.forEach(el => io.observe(el));
+    });
+  </script>
+  -->
+</body>
+</html>
