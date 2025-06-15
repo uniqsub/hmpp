@@ -12,3 +12,11 @@ text-align: center;
 html {
 	min-height: 100%;
 }
+
+.satcol{
+    color: rgb(52, 168, 235);
+}
+
+.suncol{
+    color: rgb(255, 92, 92);
+}
