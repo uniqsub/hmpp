@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>異世界転生演劇 〜君の剣が導く運命〜</title>
-  <!-- フォント等 -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Google Fonts例: Noto Serif JP -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Pico.css（軽量フレームワーク） -->
+  <!-- Pico.css -->
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 
-  <!-- AOS for scroll animations -->
+  <!-- AOS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
-    /* 基本スタイル上書き・カスタム */
+    /* 基本カスタム */
     body {
       font-family: 'Noto Serif JP', serif;
       background: #fafafa;
@@ -31,7 +30,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* ロゴテキストのアニメーション */
     @keyframes logo-float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
@@ -43,7 +41,6 @@
       animation: logo-float 3s ease-in-out infinite;
       line-height: 1.2;
     }
-    /* PVセクションのレスポンシブ動画ボックス */
     .video-container {
       position: relative;
       width: 100%;
@@ -59,13 +56,17 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
     }
-    /* セクションの共通スタイル */
     main section {
       margin: 40px auto;
       padding: 20px;
       background: rgba(255,255,255,0.85);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    main section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
     main section h2 {
       font-size: 1.6rem;
@@ -73,25 +74,36 @@
       padding-left: 10px;
       margin-bottom: 16px;
       color: #34495e;
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease;
     }
-    /* 登場人物 */
+    main section h2:hover {
+      transform: translateY(-4px);
+      color: #8e44ad;
+    }
     .character {
       display: flex;
       align-items: flex-start;
       margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .character img {
+    .character:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .character img, #logo-img {
       width: 100px;
       height: 150px;
       object-fit: cover;
       border-radius: 8px;
       margin-right: 20px;
       flex-shrink: 0;
+      transition: transform 0.3s ease;
     }
-    .character div {
-      flex: 1;
+    .character img:hover,
+    #logo-img:hover {
+      transform: translateY(-5px) scale(1.03);
     }
-    /* ボタン風リンク例 */
     .btn-primary {
       display: inline-block;
       padding: 0.6em 1.2em;
@@ -102,10 +114,9 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
-    /* フッター */
     footer {
       text-align: center;
       padding: 20px;
@@ -113,7 +124,6 @@
       font-size: 0.9em;
       color: #666;
     }
-    /* メディアクエリ */
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -127,7 +137,6 @@
         margin-bottom: 10px;
       }
     }
-    /* 背景装飾アニメーション例（任意）*/
     @keyframes bg-shift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -141,12 +150,38 @@
       pointer-events: none;
       animation: bg-shift 20s ease-in-out infinite;
     }
+    /* タッチデバイスではホバー演出をオフに */
+    @media (pointer: coarse) {
+      main section:hover,
+      .character:hover,
+      .video-container:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
+    /* リンク下線スライドイン */
+    a {
+      position: relative;
+    }
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: #9b59b6;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    a:hover::after {
+      transform: scaleX(1);
+    }
   </style>
 </head>
 <body>
   <header>
-    <!-- ロゴ画像を使いたい場合は以下に <img> を追加 -->
-    <!-- <img src="images/logo.png" alt="ロゴ" style="max-width:200px; display:block; margin:0 auto 20px;"> -->
+    <!-- <img id="logo-img" src="images/logo.png" alt="ロゴ" style="max-width:200px; display:block; margin:0 auto 20px;"> -->
     <h1 data-aos="zoom-in">異世界転生演劇<br>〜君の剣が導く運命〜</h1>
   </header>
 
@@ -155,7 +190,6 @@
     <section id="pv" data-aos="fade-up">
       <h2>プロモーションビデオ（PV）</h2>
       <div class="video-container" data-aos="zoom-in">
-        <!-- YouTube埋め込み例: 動画IDを差し替えてください -->
         <iframe 
           src="https://www.youtube.com/embed/あなたの動画ID" 
           title="PV: 異世界転生演劇 〜君の剣が導く運命〜" 
@@ -255,28 +289,10 @@
       AOS.init({
         duration: 800,
         easing: 'ease-out-quart',
-        once: true, // スクロールで一度だけアニメーション
+        once: true,
         offset: 100,
       });
     });
   </script>
-
-  <!-- 任意：IntersectionObserver で追加アニメーション -->
-  <!--
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const els = document.querySelectorAll('.animate-on-scroll');
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      els.forEach(el => io.observe(el));
-    });
-  </script>
-  -->
 </body>
 </html>
