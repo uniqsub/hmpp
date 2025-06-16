@@ -2,9 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- レスポンシブ対応のためのビューポート設定 -->
+  <!-- モバイル対応のビューポート設定 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>異世界転生演劇 〜君の剣が導く運命〜</title>
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +19,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
-    /* ベース設定 */
+    /* 基本リセット・ベース設定 */
     body {
       font-family: 'Noto Serif JP', serif;
       background: #fafafa;
@@ -27,30 +29,52 @@
       margin: 0;
       padding: 0;
     }
-    header {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 100%);
-      position: relative;
-      overflow: hidden;
-    }
     @keyframes logo-float {
       0% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
       100% { transform: translateY(0); }
     }
-    header h1 {
-      font-size: 2.5rem;
-      color: #2c3e50;
-      animation: logo-float 3s ease-in-out infinite;
-      line-height: 1.2;
-      margin: 0;
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 2rem 1rem;
     }
+    /* Pico.css の container クラスを使って中央寄せ */
+    header.container {
+      max-width: 100%;
+    }
+    .site-logo {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .title-logo {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      animation: logo-float 3s ease-in-out infinite;
+      /* 必要ならドロップシャドウなど */
+      /* filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); */
+    }
+    @media (max-width: 600px) {
+      .title-logo {
+        width: 80%;
+        max-width: 280px;
+      }
+    }
+
+    /* Main section */
     main {
-      /* Pico.css の container クラスを使う場合は不要ですが、独自に最大幅を設定する場合 */
-      /* max-width: 800px; */
-      /* margin: 0 auto; */
       padding: 1rem;
+    }
+    main .section-container {
+      /* Pico.css の container を使う場合は main.container でもよい */
+      max-width: 800px;
+      margin: 0 auto;
     }
     main section {
       margin: 2rem auto;
@@ -59,8 +83,6 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      /* 幅制限 */
-      max-width: 800px;
     }
     main section:hover {
       transform: translateY(-6px);
@@ -73,7 +95,8 @@
       margin-bottom: 1rem;
       color: #34495e;
     }
-    /* PVコンテナ */
+
+    /* PV用ビデオコンテナ */
     .video-container {
       position: relative;
       width: 100%;
@@ -94,6 +117,7 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
     }
+
     /* ボタン */
     .btn-primary {
       display: inline-block;
@@ -108,6 +132,8 @@
       transform: translateY(-4px);
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
+
+    /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
@@ -147,7 +173,7 @@
       transform: scaleX(1);
     }
 
-    /* 登場人物カード：ラッパーとカード */
+    /* 登場人物カード */
     .characters {
       display: flex;
       flex-wrap: wrap;
@@ -161,7 +187,6 @@
       border-radius: 8px;
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      /* 幅を柔軟に調整 */
       flex: 1 1 calc(50% - 1rem);
       max-width: calc(50% - 1rem);
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -171,9 +196,9 @@
       box-shadow: 0 6px 12px rgba(0,0,0,0.1);
     }
     .character img {
-      width: 100px; height: 150px;
+      width: 100px;
+      height: 150px;
       object-fit: cover;
-      border-radius: 0;
       margin: 0;
       flex-shrink: 0;
       transition: transform 0.3s ease;
@@ -184,28 +209,17 @@
     .character div {
       padding: 0.8rem;
     }
-
-    /* 小画面（スマホ等）対応 */
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
       .character {
         flex: 1 1 100%;
         max-width: 100%;
-        flex-direction: row; /* 画像とテキスト横並びのままでもOK。縦並びにしたい場合は column */
-        /* もし縦並びにしたい場合は下記を有効化 */
+        /* 横並びでもよいが、縦並びにしたい場合は以下を有効化 */
         /* flex-direction: column; */
-        text-align: left;
       }
       .character img {
         margin-right: 0.8rem;
-        margin-bottom: 0;
+        /* 縦並びの場合は margin-bottom: 0.5rem; */
       }
-      /* もし縦並びの場合は画像のmargin-bottomを設定 */
-      /* .character img {
-        margin-bottom: 0.5rem;
-      } */
       .character div {
         padding: 0.5rem;
       }
@@ -226,11 +240,22 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1 class="slide-up" data-aos="fade-up">異世界転生演劇<br>〜君の剣が導く運命〜</h1>
+  <!-- Header -->
+  <header class="container">
+    <h1 class="site-logo slide-up" data-aos="fade-up">
+      <!-- ロゴ画像を挿入。srcやsrcsetは実際のファイル名に合わせて変更 -->
+      <img 
+        src="images/images.png" 
+        srcset="images/images.png" 
+        alt="異世界転生演劇 〜君の剣が導く運命〜" 
+        class="title-logo"
+        width="600"
+        height="auto"
+      >
   </header>
 
-  <main class="container">
+  <!-- Main -->
+  <main class="container section-container">
     <!-- PV -->
     <section id="pv" data-aos="fade-up" class="slide-up">
       <h2 class="slide-up">プロモーションビデオ（PV）</h2>
@@ -243,7 +268,9 @@
           allowfullscreen>
         </iframe>
       </div>
-      <p class="slide-up" data-aos="fade-up" data-aos-delay="200">※再生ボタンをクリックしてPVをご覧ください。</p>
+      <p class="slide-up" data-aos="fade-up" data-aos-delay="200">
+        ※再生ボタンをクリックしてPVをご覧ください。
+      </p>
     </section>
 
     <!-- あらすじ -->
@@ -332,7 +359,8 @@
     </section>
   </main>
 
-  <footer data-aos="fade-up" class="slide-up">
+  <!-- Footer -->
+  <footer class="slide-up" data-aos="fade-up">
     &copy; 2025 異世界転生演劇制作委員会
   </footer>
 
