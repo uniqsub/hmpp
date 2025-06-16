@@ -299,6 +299,46 @@
         padding: 1rem;
       }
     }
+    
+    /* テーブルを包むラッパー */
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+/* テーブル幅を100%に */
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ヘッダー行強調（必要に応じて色を調整） */
+.table-responsive thead th {
+  background: var(--accent, #3498db); /* 例として青系。既存配色に合わせて変更 */
+  color: #fff;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+/* ボディセル */
+.table-responsive td {
+  padding: 0.5rem;
+  border-top: 1px solid #ddd;
+}
+
+/* 日付セルを太字にする */
+.table-responsive tbody tr td:first-child {
+  font-weight: bold;
+}
+
+/* 小画面向けフォント・パディング調整 */
+@media (max-width: 480px) {
+  .table-responsive th,
+  .table-responsive td {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+}
     @media (pointer: coarse) {
       main section:hover,
       .character:hover,
@@ -418,14 +458,77 @@
 
     <!-- 上演時間 -->
     <section id="schedule" data-aos="fade-up" class="slide-up">
-      <h2>上演時間</h2>
-      <p>
-        ● 開演：2025年7月13日（日）<br>
-        ● 昼の部：13:00〜 / 夜の部：18:00〜<br>
-        ※開場は各30分前。<br>
-        ※上演時間は約2時間（途中休憩あり）です。
-      </p>
-    </section>
+  <h2>上演時間</h2>
+
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>公演</th>
+          <th>時間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 6/20(金) -->
+        <tr>
+          <td rowspan="2">6/20（金）</td>
+          <td>A公演</td>
+          <td>15:00 ～ 15:20</td>
+        </tr>
+        <tr>
+          <td>B公演</td>
+          <td>15:30 ～ 15:50</td>
+        </tr>
+
+        <!-- 6/21(土) -->
+        <tr>
+          <td rowspan="6">6/21（土）</td>
+          <td>A公演</td>
+          <td>10:00 ～ 10:20</td>
+        </tr>
+        <tr>
+          <td>B公演</td>
+          <td>10:50 ～ 11:10</td>
+        </tr>
+        <tr>
+          <td>A公演</td>
+          <td>11:40 ～ 12:00</td>
+        </tr>
+        <tr>
+          <td>B公演</td>
+          <td>13:00 ～ 13:20</td>
+        </tr>
+        <tr>
+          <td>A公演</td>
+          <td>13:50 ～ 14:10</td>
+        </tr>
+        <tr>
+          <td>B公演</td>
+          <td>14:40 ～ 15:00</td>
+        </tr>
+
+        <!-- 6/22(日) -->
+        <tr>
+          <td rowspan="3">6/22（日）</td>
+          <td>A公演</td>
+          <td>10:00 ～ 10:20</td>
+        </tr>
+        <tr>
+          <td>B公演</td>
+          <td>10:50 ～ 11:10</td>
+        </tr>
+        <tr>
+          <td>A公演</td>
+          <td>11:40 ～ 12:00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>※本公演はチケット制となっているためチケットの確保をお忘れなく</p>
+  <p>※公演開始の10分前程にいらっしゃると入場がスムーズになります。余裕を持ってお越しください。</p>
+</section>
 
     <!-- キャストからの一言 -->
     <section id="cast-message" data-aos="fade-up" class="slide-up">
