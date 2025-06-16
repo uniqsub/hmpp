@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>文化祭 6/21(土)、6/22(日)</title>
+
+  <!-- Pico.css (軽量CSSフレームワーク) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+        integrity="sha512-Gn0+Gn4Q4t3eTLwKcNmksuSj2Ca6E7d9Vb0u3iBdgCpsIhZ0v7dR7aUoH2sC+eL7lXdE2pOiVpd0C1zK8aU9EA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- カスタムCSS -->
+  <style>
+    /* セクション間に余白を付与 */
+    section {
+      padding: 3rem 0;
+    }
+    /* 背景を交互に薄色にする例 */
+    section:nth-of-type(even) {
+      background-color: var(--surface-alt);
+    }
+    /* 画像のレスポンシブ対応（カルーセル内でも有効） */
+    .carousel-container img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* スムーズスクロール */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* カルーセル基盤スタイル */
+    .carousel-wrapper {
+      position: relative;
+    }
+    .carousel-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+    .carousel-container::-webkit-scrollbar {
+      display: none; /* スクロールバーを隠す */
+    }
+    .carousel-item {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      position: relative;
+      /* もし中央寄せでキャプションを下に出す場合など調整 */
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+    .carousel-item figure {
+      margin: 0;
+    }
+    /* 前後ボタン */
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1;
+    }
+    .carousel-button:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+    .carousel-prev {
+      left: 1rem;
+    }
+    .carousel-next {
+      right: 1rem;
+    }
+    /* 必要に応じてテーマカラー調整 */
+    /* :root {
+      --primary: #336699;
+      --accent: #cc9933;
+    } */
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header data-aos="fade-down">
+    <nav>
+      <ul>
+        <li><a href="#floor-map">フロアマップ</a></li>
+        <li><a href="#groups">各団体</a></li>
+        <li><a href="#timetable">タイムテーブル</a></li>
+        <li><a href="#notes">来場時の注意</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <h1 data-aos="fade-up" data-aos-delay="100">文化祭 6/21(土)、6/22(日)</h1>
+      <p data-aos="fade-up" data-aos-delay="200">※6/21は午後のみ保護者公開、6/22は一般公開です。</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- フロアマップ セクション -->
+    <section id="floor-map" class="floor-map">
+      <h2 data-aos="fade-right">フロアマップ</h2>
+      <div class="carousel-wrapper" data-aos="zoom-in" data-aos-delay="100">
+        <button class="carousel-button carousel-prev" aria-label="前へ" data-target="floorCarousel">&lsaquo;</button>
+        <div id="floorCarousel" class="carousel-container">
+          <!-- ここにスライド画像を追加。例として4フロア -->
+          <div class="carousel-item">
+            <figure>
+              <img src="image/floor_1.png" alt="1階 フロアマップ">
+              <figcaption>1階</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure>
+              <img src="image/floor_2.png" alt="2階 フロアマップ">
+              <figcaption>2階</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure>
+              <img src="image/floor_3.png" alt="3階 フロアマップ">
+              <figcaption>3階</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure>
+              <img src="image/floor_4.png" alt="4階 フロアマップ">
+              <figcaption>4階</figcaption>
+            </figure>
+          </div>
+        </div>
+        <button class="carousel-button carousel-next" aria-label="次へ" data-target="floorCarousel">&rsaquo;</button>
+      </div>
+    </section>
+
+    <!-- 各団体ホームページ -->
+    <section id="groups">
+      <h2 data-aos="fade-left">各団体ホームページ</h2>
+      <ul data-aos="fade-up" data-aos-delay="100">
+        <!-- 例:
+        <li><a href="https://example.com/group1" target="_blank" rel="noopener">団体1：〇〇部</a></li>
+        -->
+        <li>ここに各団体のリンクを追加してください。</li>
+      </ul>
+    </section>
+
+    <!-- タイムテーブル セクション -->
+    <section id="timetable">
+      <h2 data-aos="fade-right">タイムテーブル</h2>
+      <div class="carousel-wrapper" data-aos="zoom-in" data-aos-delay="100">
+        <button class="carousel-button carousel-prev" aria-label="前へ" data-target="timeCarousel">&lsaquo;</button>
+        <div id="timeCarousel" class="carousel-container">
+          <!-- ここにタイムテーブル画像を追加。例えば複数ページある場合 -->
+          <div class="carousel-item">
+            <figure>
+              <img src="image/timetable_page1.png" alt="タイムテーブル ページ1">
+              <figcaption>タイムテーブル 1</figcaption>
+            </figure>
+          </div>
+          <div class="carousel-item">
+            <figure>
+              <img src="image/timetable_page2.png" alt="タイムテーブル ページ2">
+              <figcaption>タイムテーブル 2</figcaption>
+            </figure>
+          </div>
+          <!-- 必要ならさらに追加 -->
+        </div>
+        <button class="carousel-button carousel-next" aria-label="次へ" data-target="timeCarousel">&rsaquo;</button>
+      </div>
+    </section>
+
+    <!-- 来場時の注意 -->
+    <section id="notes">
+      <h2 data-aos="fade-left">来場時の注意</h2>
+      <ul data-aos="fade-up" data-aos-delay="100">
+        <!-- 例:
+        <li>マスクの着用にご協力ください。</li>
+        -->
+        <li>ここに注意事項を追加してください。</li>
+      </ul>
+    </section>
+
+    <!-- アクセス -->
+    <section id="access">
+      <h2 data-aos="fade-right">アクセス</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        <!-- 例:
+        最寄り駅: ○○線 ○○駅 徒歩5分<br>
+        住所: 〒123-4567 ○○県○○市○○町1-2-3
+        -->
+        ここに最寄り駅・住所などのアクセス情報を記入してください。
+      </p>
+      <!-- Google Maps 埋め込み例 -->
+      <div data-aos="zoom-in" data-aos-delay="200">
+        <!--
+        <iframe
+          src="https://www.google.com/maps/embed?pb=..."
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+          title="会場への地図"></iframe>
+        -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer data-aos="fade-up" data-aos-delay="100">
+    <div class="container">
+      <p>© 2025 文化祭実行委員会</p>
+    </div>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+          integrity="sha512-1nY4FwKQplO+i/6ygM/af92JueMqNvDmEhSueZpRHz+oEhYi0+NBN/Pjnx7KxupWn6WmIWXm38c0Y5lTw/EjIQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // AOS 初期化
+      AOS.init({
+        duration: 600,
+        once: true,
+      });
+
+      // 汎用カルーセル制御コード
+      function initCarousel(carouselId) {
+        const container = document.getElementById(carouselId);
+        if (!container) return;
+
+        // 前へ・次へボタンを container のラッパーから取得
+        const wrapper = container.parentElement;
+        const btnPrev = wrapper.querySelector('.carousel-prev[data-target="' + carouselId + '"]');
+        const btnNext = wrapper.querySelector('.carousel-next[data-target="' + carouselId + '"]');
+
+        // スクロールの幅（1スライド分）は container.clientWidth とする
+        function updateButtons() {
+          // スクロール位置に応じてボタン有効/無効を切り替え
+          const maxScrollLeft = container.scrollWidth - container.clientWidth;
+          btnPrev.disabled = container.scrollLeft <= 0;
+          // 少し余裕を見て比較
+          btnNext.disabled = container.scrollLeft >= maxScrollLeft - 1;
+        }
+
+        // ボタンクリック時スクロール
+        btnPrev.addEventListener('click', function() {
+          container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
+        });
+        btnNext.addEventListener('click', function() {
+          container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
+        });
+
+        // スクロール終了後にボタン状態更新
+        container.addEventListener('scroll', function() {
+          // スクロール中は頻繁に呼ばれるが、updateButtons は軽量
+          updateButtons();
+        });
+
+        // 初期状態更新
+        updateButtons();
+      }
+
+      // floorCarousel, timeCarousel を初期化
+      initCarousel('floorCarousel');
+      initCarousel('timeCarousel');
+    });
+  </script>
+</body>
+</html>
