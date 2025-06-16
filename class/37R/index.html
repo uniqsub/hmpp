@@ -2,6 +2,8 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <!-- レスポンシブ対応のためのビューポート設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>異世界転生演劇 〜君の剣が導く運命〜</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,17 +17,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
+    /* ベース設定 */
     body {
       font-family: 'Noto Serif JP', serif;
       background: #fafafa;
       background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
       color: #333;
       line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
     header {
       text-align: center;
-      padding: 60px 20px;
-      /* 背景は固定グラデーションに */
+      padding: 4rem 1rem;
       background: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 100%);
       position: relative;
       overflow: hidden;
@@ -40,48 +44,23 @@
       color: #2c3e50;
       animation: logo-float 3s ease-in-out infinite;
       line-height: 1.2;
+      margin: 0;
     }
-    /* 下から浮き上がるアニメーション：ホバー用ではなく、初期出現用 */
-    .slide-up {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .slide-up.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    /* キャラクターカード等、ホバー時浮き上がり */
-    .character {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      /* ホバー時の浮き上がり */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .character:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-    .character img {
-      width: 100px; height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 20px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-    .character img:hover {
-      transform: translateY(-5px) scale(1.03);
+    main {
+      /* Pico.css の container クラスを使う場合は不要ですが、独自に最大幅を設定する場合 */
+      /* max-width: 800px; */
+      /* margin: 0 auto; */
+      padding: 1rem;
     }
     main section {
-      margin: 40px auto;
-      padding: 20px;
+      margin: 2rem auto;
+      padding: 1.5rem;
       background: rgba(255,255,255,0.85);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      /* ホバー時浮き上がり */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* 幅制限 */
+      max-width: 800px;
     }
     main section:hover {
       transform: translateY(-6px);
@@ -90,8 +69,8 @@
     main section h2 {
       font-size: 1.6rem;
       border-left: 6px solid #9b59b6;
-      padding-left: 10px;
-      margin-bottom: 16px;
+      padding-left: 0.6rem;
+      margin-bottom: 1rem;
       color: #34495e;
     }
     /* PVコンテナ */
@@ -115,6 +94,7 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
     }
+    /* ボタン */
     .btn-primary {
       display: inline-block;
       padding: 0.6em 1.2em;
@@ -130,27 +110,27 @@
     }
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 1rem;
       background: #f2f2f2;
-      font-size: 0.9em;
+      font-size: 0.9rem;
       color: #666;
     }
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .character {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .character img {
-        margin-bottom: 10px;
-      }
+
+    /* Slide-up アニメーション */
+    .slide-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
+    .slide-up.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* リンク下線スライドイン */
     a {
       position: relative;
+      color: inherit;
     }
     a::after {
       content: "";
@@ -166,6 +146,74 @@
     a:hover::after {
       transform: scaleX(1);
     }
+
+    /* 登場人物カード：ラッパーとカード */
+    .characters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .character {
+      display: flex;
+      align-items: flex-start;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      /* 幅を柔軟に調整 */
+      flex: 1 1 calc(50% - 1rem);
+      max-width: calc(50% - 1rem);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .character:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .character img {
+      width: 100px; height: 150px;
+      object-fit: cover;
+      border-radius: 0;
+      margin: 0;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .character img:hover {
+      transform: translateY(-5px) scale(1.03);
+    }
+    .character div {
+      padding: 0.8rem;
+    }
+
+    /* 小画面（スマホ等）対応 */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .character {
+        flex: 1 1 100%;
+        max-width: 100%;
+        flex-direction: row; /* 画像とテキスト横並びのままでもOK。縦並びにしたい場合は column */
+        /* もし縦並びにしたい場合は下記を有効化 */
+        /* flex-direction: column; */
+        text-align: left;
+      }
+      .character img {
+        margin-right: 0.8rem;
+        margin-bottom: 0;
+      }
+      /* もし縦並びの場合は画像のmargin-bottomを設定 */
+      /* .character img {
+        margin-bottom: 0.5rem;
+      } */
+      .character div {
+        padding: 0.5rem;
+      }
+      main section {
+        margin: 1.5rem auto;
+        padding: 1rem;
+      }
+    }
     /* タッチデバイスではホバー演出をオフ */
     @media (pointer: coarse) {
       main section:hover,
@@ -179,14 +227,14 @@
 </head>
 <body>
   <header>
-    <h1>異世界転生演劇<br>〜君の剣が導く運命〜</h1>
+    <h1 class="slide-up" data-aos="fade-up">異世界転生演劇<br>〜君の剣が導く運命〜</h1>
   </header>
 
-  <main>
+  <main class="container">
     <!-- PV -->
     <section id="pv" data-aos="fade-up" class="slide-up">
       <h2 class="slide-up">プロモーションビデオ（PV）</h2>
-      <div class="video-container slide-up">
+      <div class="video-container slide-up" data-aos="fade-up" data-aos-delay="100">
         <iframe 
           src="https://www.youtube.com/embed/あなたの動画ID" 
           title="PV: 異世界転生演劇 〜君の剣が導く運命〜" 
@@ -195,7 +243,7 @@
           allowfullscreen>
         </iframe>
       </div>
-      <p class="slide-up">※再生ボタンをクリックしてPVをご覧ください。</p>
+      <p class="slide-up" data-aos="fade-up" data-aos-delay="200">※再生ボタンをクリックしてPVをご覧ください。</p>
     </section>
 
     <!-- あらすじ -->
@@ -212,33 +260,34 @@
     <!-- 登場人物 -->
     <section id="characters" data-aos="fade-up" class="slide-up">
       <h2 class="slide-up">登場人物</h2>
-      <div class="character slide-up" data-aos="fade-up" data-aos-delay="100">
-        <img src="https://via.placeholder.com/100x150" alt="アキラ">
-        <div>
-          <strong>アキラ</strong><br>
-          ほげほげぷれーすほるだー
+      <div class="characters">
+        <div class="character slide-up" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://via.placeholder.com/100x150" alt="アキラ">
+          <div>
+            <strong>アキラ</strong><br>
+            ほげほげプレースホルダー
+          </div>
         </div>
-      </div>
-      <div class="character slide-up" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://via.placeholder.com/100x150" alt="ローゼ">
-        <div>
-          <strong>ローゼ</strong><br>
-          ふーばーぷれーすほるだー
+        <div class="character slide-up" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://via.placeholder.com/100x150" alt="ローゼ">
+          <div>
+            <strong>ローゼ</strong><br>
+            ふーばープレースホルダー
+          </div>
         </div>
-      </div>
-      <div class="character slide-up" data-aos="fade-up" data-aos-delay="300">
-        <img src="https://via.placeholder.com/100x150" alt="魔王">
-        <div>
-          <strong>魔王</strong><br>
-          ぴよぴよぷれーすほるだー
+        <div class="character slide-up" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://via.placeholder.com/100x150" alt="魔王">
+          <div>
+            <strong>魔王</strong><br>
+            ぴよぴよプレースホルダー
+          </div>
         </div>
-      </div>
-      </div>
-      <div class="character slide-up" data-aos="fade-up" data-aos-delay="300">
-        <img src="https://via.placeholder.com/100x150" alt="神">
-        <div>
-          <strong>神</strong><br>
-          ふがふがぷれーすほるだー
+        <div class="character slide-up" data-aos="fade-up" data-aos-delay="400">
+          <img src="https://via.placeholder.com/100x150" alt="神">
+          <div>
+            <strong>神</strong><br>
+            ふがふがプレースホルダー
+          </div>
         </div>
       </div>
     </section>
