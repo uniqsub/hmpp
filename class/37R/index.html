@@ -43,6 +43,19 @@
       /* テキストカラー */
       --text-color: #222; /* 見出し等濃いめ */
       --text-color-secondary: #333; /* 本文など */
+      
+      /* テーブルヘッダーの背景色（淡い青系） */
+  --table-header-bg: #cce7ff;
+  /* テーブルヘッダー文字色 */
+  --table-header-color: #222; /* 濃すぎず、濃い文字で可読性を保つ */
+
+  /* テーブル偶数行背景（非常に淡い青系/灰白系） */
+  --table-row-bg-even: #f5fbff;
+  /* テーブル奇数行背景（白） */
+  --table-row-bg-odd: #ffffff;
+
+  /* テーブル境界線色 */
+  --table-border-color: #ddeeff; /* 薄い色 */
     }
 
     /* ==== ベース設定 ==== */
@@ -306,32 +319,42 @@
   margin-bottom: 1rem;
 }
 
-/* テーブル幅を100%に */
+/* テーブル本体 */
 .table-responsive table {
   width: 100%;
   border-collapse: collapse;
 }
 
-/* ヘッダー行強調（必要に応じて色を調整） */
+/* ヘッダー行 */
 .table-responsive thead th {
-  background: var(--accent, #3498db); /* 例として青系。既存配色に合わせて変更 */
-  color: #fff;
+  background: var(--table-header-bg);
+  color: var(--table-header-color);
   padding: 0.5rem;
   text-align: left;
+  border-bottom: 2px solid var(--table-border-color);
 }
 
-/* ボディセル */
+/* 本文セル */
 .table-responsive td {
   padding: 0.5rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--table-border-color);
+  color: #333;
 }
 
-/* 日付セルを太字にする */
+/* 行のストライプ：奇数行白、偶数行淡い色 */
+.table-responsive tbody tr:nth-child(odd) {
+  background: var(--table-row-bg-odd);
+}
+.table-responsive tbody tr:nth-child(even) {
+  background: var(--table-row-bg-even);
+}
+
+/* 日付セルを太字にしたい場合 */
 .table-responsive tbody tr td:first-child {
   font-weight: bold;
 }
 
-/* 小画面向けフォント・パディング調整 */
+/* 小画面向け調整 */
 @media (max-width: 480px) {
   .table-responsive th,
   .table-responsive td {
@@ -339,6 +362,12 @@
     font-size: 0.9rem;
   }
 }
+
+/* 必要に応じてホバー時に軽い背景色変化をつける（任意） */
+.table-responsive tbody tr:hover {
+  background: rgba(204, 231, 255, 0.4); /* 薄い青でホバー強調 */
+}
+
     @media (pointer: coarse) {
       main section:hover,
       .character:hover,
