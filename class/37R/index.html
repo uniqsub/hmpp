@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
-    /* 基本カスタム */
     body {
       font-family: 'Noto Serif JP', serif;
       background: #fafafa;
@@ -26,6 +25,7 @@
     header {
       text-align: center;
       padding: 60px 20px;
+      /* 背景は固定グラデーションに */
       background: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 100%);
       position: relative;
       overflow: hidden;
@@ -41,20 +41,38 @@
       animation: logo-float 3s ease-in-out infinite;
       line-height: 1.2;
     }
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    /* 下から浮き上がるアニメーション：ホバー用ではなく、初期出現用 */
+    .slide-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .video-container iframe,
-    .video-container video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+    .slide-up.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* キャラクターカード等、ホバー時浮き上がり */
+    .character {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      /* ホバー時の浮き上がり */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .character:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .character img {
+      width: 100px; height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .character img:hover {
+      transform: translateY(-5px) scale(1.03);
     }
     main section {
       margin: 40px auto;
@@ -62,10 +80,11 @@
       background: rgba(255,255,255,0.85);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      /* ホバー時浮き上がり */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     main section:hover {
-      transform: translateY(-8px);
+      transform: translateY(-6px);
       box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
     main section h2 {
@@ -74,35 +93,27 @@
       padding-left: 10px;
       margin-bottom: 16px;
       color: #34495e;
-      display: inline-block;
-      transition: transform 0.3s ease, color 0.3s ease;
     }
-    main section h2:hover {
-      transform: translateY(-4px);
-      color: #8e44ad;
-    }
-    .character {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
+    /* PVコンテナ */
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .character:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    .video-container:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
     }
-    .character img, #logo-img {
-      width: 100px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-right: 20px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-    .character img:hover,
-    #logo-img:hover {
-      transform: translateY(-5px) scale(1.03);
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
     }
     .btn-primary {
       display: inline-block;
@@ -137,28 +148,6 @@
         margin-bottom: 10px;
       }
     }
-    @keyframes bg-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(270deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
-      pointer-events: none;
-      animation: bg-shift 20s ease-in-out infinite;
-    }
-    /* タッチデバイスではホバー演出をオフに */
-    @media (pointer: coarse) {
-      main section:hover,
-      .character:hover,
-      .video-container:hover {
-        transform: none;
-        box-shadow: none;
-      }
-    }
     /* リンク下線スライドイン */
     a {
       position: relative;
@@ -177,19 +166,27 @@
     a:hover::after {
       transform: scaleX(1);
     }
+    /* タッチデバイスではホバー演出をオフ */
+    @media (pointer: coarse) {
+      main section:hover,
+      .character:hover,
+      .video-container:hover {
+        transform: none;
+        box-shadow: none;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <!-- <img id="logo-img" src="images/logo.png" alt="ロゴ" style="max-width:200px; display:block; margin:0 auto 20px;"> -->
-    <h1 data-aos="zoom-in">異世界転生演劇<br>〜君の剣が導く運命〜</h1>
+    <h1>異世界転生演劇<br>〜君の剣が導く運命〜</h1>
   </header>
 
   <main>
-    <!-- PVセクション -->
-    <section id="pv" data-aos="fade-up">
-      <h2>プロモーションビデオ（PV）</h2>
-      <div class="video-container" data-aos="zoom-in">
+    <!-- PV -->
+    <section id="pv" data-aos="fade-up" class="slide-up">
+      <h2 class="slide-up">プロモーションビデオ（PV）</h2>
+      <div class="video-container slide-up">
         <iframe 
           src="https://www.youtube.com/embed/あなたの動画ID" 
           title="PV: 異世界転生演劇 〜君の剣が導く運命〜" 
@@ -198,13 +195,13 @@
           allowfullscreen>
         </iframe>
       </div>
-      <p>※再生ボタンをクリックしてPVをご覧ください。</p>
+      <p class="slide-up">※再生ボタンをクリックしてPVをご覧ください。</p>
     </section>
 
     <!-- あらすじ -->
-    <section id="synopsis" data-aos="fade-right">
-      <h2>あらすじ</h2>
-      <p>
+    <section id="synopsis" data-aos="fade-up" class="slide-up">
+      <h2 class="slide-up">あらすじ</h2>
+      <p class="slide-up">
         ブラック企業に勤める青年・和也は、ある日異世界へと転移してしまう。<br>
         剣と魔法の世界で目覚めた彼は、運命の少女と出会い、「滅びの予言」を覆す旅に出る――。<br>
         果たして彼は、元の世界に戻るのか？ それともこの世界を選ぶのか？<br>
@@ -213,23 +210,23 @@
     </section>
 
     <!-- 登場人物 -->
-    <section id="characters" data-aos="fade-left">
-      <h2>登場人物</h2>
-      <div class="character" data-aos="fade-up" data-aos-delay="100">
+    <section id="characters" data-aos="fade-up" class="slide-up">
+      <h2 class="slide-up">登場人物</h2>
+      <div class="character slide-up" data-aos="fade-up" data-aos-delay="100">
         <img src="https://via.placeholder.com/100x150" alt="和也">
         <div>
           <strong>和也（CV: 山田 太郎）</strong><br>
           異世界に転移した元社畜。剣の才能が覚醒していく。
         </div>
       </div>
-      <div class="character" data-aos="fade-up" data-aos-delay="200">
+      <div class="character slide-up" data-aos="fade-up" data-aos-delay="200">
         <img src="https://via.placeholder.com/100x150" alt="リリア">
         <div>
           <strong>リリア（CV: 鈴木 花子）</strong><br>
           謎多き巫女。和也の運命を導く少女。
         </div>
       </div>
-      <div class="character" data-aos="fade-up" data-aos-delay="300">
+      <div class="character slide-up" data-aos="fade-up" data-aos-delay="300">
         <img src="https://via.placeholder.com/100x150" alt="ガルド">
         <div>
           <strong>ガルド（CV: 佐藤 一郎）</strong><br>
@@ -239,9 +236,9 @@
     </section>
 
     <!-- 上演時間 -->
-    <section id="schedule" data-aos="fade-up">
-      <h2>上演時間</h2>
-      <p>
+    <section id="schedule" data-aos="fade-up" class="slide-up">
+      <h2 class="slide-up">上演時間</h2>
+      <p class="slide-up">
         ● 開演：2025年7月13日（日）<br>
         ● 昼の部：13:00〜 / 夜の部：18:00〜<br>
         ※開場は各30分前。<br>
@@ -250,26 +247,26 @@
     </section>
 
     <!-- キャストからの一言 -->
-    <section id="cast-message" data-aos="fade-up">
-      <h2>キャストからの一言</h2>
-      <p data-aos="fade-up" data-aos-delay="100">
+    <section id="cast-message" data-aos="fade-up" class="slide-up">
+      <h2 class="slide-up">キャストからの一言</h2>
+      <p class="slide-up" data-aos="fade-up" data-aos-delay="100">
         <strong>山田 太郎（和也 役）:</strong><br>
         「誰もが抱える“選択”を、全力で演じました。ぜひ劇場でご覧ください！」<br><br>
       </p>
-      <p data-aos="fade-up" data-aos-delay="200">
+      <p class="slide-up" data-aos="fade-up" data-aos-delay="200">
         <strong>鈴木 花子（リリア 役）:</strong><br>
         「リリアの想いが、あなたの心に届きますように。」<br><br>
       </p>
-      <p data-aos="fade-up" data-aos-delay="300">
+      <p class="slide-up" data-aos="fade-up" data-aos-delay="300">
         <strong>佐藤 一郎（ガルド 役）:</strong><br>
         「この作品を通じて、異世界の深さを感じていただければ幸いです。」
       </p>
     </section>
 
-    <!-- アクセス情報 -->
-    <section id="access" data-aos="fade-up">
-      <h2>アクセス</h2>
-      <p>
+    <!-- アクセス -->
+    <section id="access" data-aos="fade-up" class="slide-up">
+      <h2 class="slide-up">アクセス</h2>
+      <p class="slide-up">
         ● 会場：○○市民ホール 大ホール<br>
         ● 住所：東京都○○区1-2-3 ○○ビル 4F<br>
         ● 最寄駅：○○駅 東口から徒歩5分<br>
@@ -278,20 +275,32 @@
     </section>
   </main>
 
-  <footer data-aos="fade-in">
+  <footer data-aos="fade-up" class="slide-up">
     &copy; 2025 異世界転生演劇制作委員会
   </footer>
 
-  <!-- AOSスクリプト -->
+  <!-- AOS スクリプト -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // AOS 初期化
       AOS.init({
-        duration: 800,
+        duration: 600,
         easing: 'ease-out-quart',
         once: true,
-        offset: 100,
+        offset: 120,
       });
+      // IntersectionObserver で .slide-up 要素に in-view を付与
+      const els = document.querySelectorAll('.slide-up');
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { root: null, rootMargin: '0px 0px -20px 0px', threshold: 0 });
+      els.forEach(el => io.observe(el));
     });
   </script>
 </body>
