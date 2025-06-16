@@ -19,30 +19,54 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
 
   <style>
-    /* 基本リセット・ベース設定 */
+    /* ==== カスタムプロパティによる色定義 ==== */
+    :root {
+      /* 背景グラデーション開始・終了色 */
+      --bg-start: #eef6fb;
+      --bg-end:   #d0e7f9;
+
+      /* ヘッダー背景グラデーション */
+      --header-start: #4a90e2;
+      --header-end:   #a0d8ff;
+
+      /* セクション見出しのアクセントカラー */
+      --accent: #3498db;
+      --accent-dark: #2980b9;
+
+      /* ボタン背景色 */
+      --btn-bg: #3498db;
+      --btn-bg-hover: #2980b9;
+
+      /* リンク下線色 */
+      --link-underline: #3498db;
+
+      /* テキストカラー */
+      --text-color: #222; /* 見出し等濃いめ */
+      --text-color-secondary: #333; /* 本文など */
+    }
+
+    /* ==== ベース設定 ==== */
     body {
       font-family: 'Noto Serif JP', serif;
-      background: #fafafa;
-      background-image: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-      color: #333;
+      background: var(--bg-start);
+      background-image: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      color: var(--text-color-secondary);
       line-height: 1.6;
       margin: 0;
       padding: 0;
     }
-    @keyframes logo-float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-      100% { transform: translateY(0); }
+    /* 見出しなどテキストカラー */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-color);
     }
 
-    /* Header */
+    /* ==== Header ==== */
     header {
-      background: linear-gradient(90deg, #b8c6db 0%, #f5f7fa 100%);
+      background: linear-gradient(90deg, var(--header-start) 0%, var(--header-end) 100%);
       position: relative;
       overflow: hidden;
       padding: 2rem 1rem;
     }
-    /* Pico.css の container クラスを使って中央寄せ */
     header.container {
       max-width: 100%;
     }
@@ -56,7 +80,7 @@
       height: auto;
       display: block;
       margin: 0 auto;
-　　　 filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      /* 浮遊アニメーションは不要のため指定なし */
     }
     @media (max-width: 600px) {
       .title-logo {
@@ -64,20 +88,48 @@
         max-width: 280px;
       }
     }
+    /* Header内ナビなどを配置する場合 */
+    header nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0 0;
+      padding: 0;
+    }
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      position: relative;
+    }
+    /* ヘッダー内リンク下線（ホバー時） */
+    header nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: var(--link-underline);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    header nav ul li a:hover::after {
+      transform: scaleX(1);
+    }
 
-    /* Main section */
+    /* ==== Main ==== */
     main {
       padding: 1rem;
     }
     main .section-container {
-      /* Pico.css の container を使う場合は main.container でもよい */
       max-width: 800px;
       margin: 0 auto;
     }
     main section {
       margin: 2rem auto;
       padding: 1.5rem;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -88,13 +140,17 @@
     }
     main section h2 {
       font-size: 1.6rem;
-      border-left: 6px solid #9b59b6;
+      border-left: 6px solid var(--accent);
       padding-left: 0.6rem;
       margin-bottom: 1rem;
-      color: #34495e;
+      color: var(--text-color);
+    }
+    main section h2, main section h3 {
+      /* テキストカラー強調 */
+      color: var(--text-color);
     }
 
-    /* PV用ビデオコンテナ */
+    /* ==== PV用ビデオコンテナ ==== */
     .video-container {
       position: relative;
       width: 100%;
@@ -116,22 +172,23 @@
       width: 100%; height: 100%;
     }
 
-    /* ボタン */
+    /* ==== ボタン ==== */
     .btn-primary {
       display: inline-block;
       padding: 0.6em 1.2em;
       border-radius: 4px;
-      background: #9b59b6;
+      background: var(--btn-bg);
       color: #fff;
       text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
     .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      background: var(--btn-bg-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
-    /* Footer */
+    /* ==== Footer ==== */
     footer {
       text-align: center;
       padding: 1rem;
@@ -139,8 +196,27 @@
       font-size: 0.9rem;
       color: #666;
     }
+    /* Footer内小ロゴ等 */
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+    .footer-logo-img {
+      max-width: 100%;
+      height: auto;
+    }
+    @media (max-width: 600px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
 
-    /* Slide-up アニメーション */
+    /* ==== Slide-up アニメーション（AOS連動） ==== */
     .slide-up {
       opacity: 0;
       transform: translateY(20px);
@@ -151,10 +227,10 @@
       transform: translateY(0);
     }
 
-    /* リンク下線スライドイン */
+    /* ==== リンク下線スライドイン（本文内リンクに適用） ==== */
     a {
       position: relative;
-      color: inherit;
+      color: var(--accent-dark);
     }
     a::after {
       content: "";
@@ -162,7 +238,7 @@
       left: 0; bottom: -2px;
       width: 100%;
       height: 2px;
-      background: #9b59b6;
+      background: var(--link-underline);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
@@ -171,7 +247,7 @@
       transform: scaleX(1);
     }
 
-    /* 登場人物カード */
+    /* ==== 登場人物カード ==== */
     .characters {
       display: flex;
       flex-wrap: wrap;
@@ -211,12 +287,9 @@
       .character {
         flex: 1 1 100%;
         max-width: 100%;
-        /* 横並びでもよいが、縦並びにしたい場合は以下を有効化 */
-        /* flex-direction: column; */
       }
       .character img {
         margin-right: 0.8rem;
-        /* 縦並びの場合は margin-bottom: 0.5rem; */
       }
       .character div {
         padding: 0.5rem;
@@ -226,7 +299,6 @@
         padding: 1rem;
       }
     }
-    /* タッチデバイスではホバー演出をオフ */
     @media (pointer: coarse) {
       main section:hover,
       .character:hover,
@@ -238,26 +310,58 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header: 必要に応じてロゴを置かずナビのみ -->
   <header class="container">
-    <h1 class="site-logo slide-up" data-aos="fade-up">
-      <!-- ロゴ画像を挿入。srcやsrcsetは実際のファイル名に合わせて変更 -->
-      <img 
-        src="images/image.png" 
-        srcset="images/image.png" 
-        alt="異世界転生演劇 〜君の剣が導く運命〜" 
-        class="title-logo"
-        width="600"
-        height="auto"
-      >
+    <!-- もしヘッダーにもロゴを置くなら、ここに <img class="title-logo"...> を追加可能 -->
+    <nav class="slide-up" data-aos="fade-up">
+      <ul>
+        <li><a href="#pv">PV</a></li>
+        <li><a href="#synopsis">あらすじ</a></li>
+        <li><a href="#characters">登場人物</a></li>
+        <li><a href="#schedule">上演時間</a></li>
+        <li><a href="#cast-message">キャスト</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Main -->
+  <!-- ヒーローセクションに大きくロゴ表示する例 -->
+  <section class="hero slide-up" data-aos="fade-up" style="
+      position: relative;
+      width: 100%;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      /* 青系背景例 */
+      background: linear-gradient(135deg, rgba(40,60,100,0.7), rgba(70,100,150,0.7)),
+                  url('images/hero-bg.jpg') center/cover no-repeat;
+      color: #fff;
+      padding: 2rem 1rem;
+    ">
+    <div class="hero-logo">
+      <img 
+        src="images/title-logo.png" 
+        srcset="images/title-logo.png 1x, images/title-logo@2x.png 2x"
+        alt="異世界転生演劇 〜君の剣が導く運命〜"
+        class="title-logo"
+        width="800"
+        height="auto"
+      >
+    </div>
+    <div class="hero-caption" data-aos="fade-up" data-aos-delay="200">
+      <p>――運命を変える剣が、ここに蘇る――</p>
+      <a href="#pv" class="btn-primary">PVを見る</a>
+    </div>
+  </section>
+
   <main class="container section-container">
     <!-- PV -->
     <section id="pv" data-aos="fade-up" class="slide-up">
-      <h2 class="slide-up">プロモーションビデオ（PV）</h2>
-      <div class="video-container slide-up" data-aos="fade-up" data-aos-delay="100">
+      <h2>プロモーションビデオ（PV）</h2>
+      <div class="video-container" data-aos="fade-up" data-aos-delay="100">
         <iframe 
           src="https://www.youtube.com/embed/あなたの動画ID" 
           title="PV: 異世界転生演劇 〜君の剣が導く運命〜" 
@@ -266,15 +370,15 @@
           allowfullscreen>
         </iframe>
       </div>
-      <p class="slide-up" data-aos="fade-up" data-aos-delay="200">
+      <p data-aos="fade-up" data-aos-delay="200">
         ※再生ボタンをクリックしてPVをご覧ください。
       </p>
     </section>
 
     <!-- あらすじ -->
     <section id="synopsis" data-aos="fade-up" class="slide-up">
-      <h2 class="slide-up">あらすじ</h2>
-      <p class="slide-up">
+      <h2>あらすじ</h2>
+      <p>
         ブラック企業に勤める青年・和也は、ある日異世界へと転移してしまう。<br>
         剣と魔法の世界で目覚めた彼は、運命の少女と出会い、「滅びの予言」を覆す旅に出る――。<br>
         果たして彼は、元の世界に戻るのか？ それともこの世界を選ぶのか？<br>
@@ -284,30 +388,30 @@
 
     <!-- 登場人物 -->
     <section id="characters" data-aos="fade-up" class="slide-up">
-      <h2 class="slide-up">登場人物</h2>
+      <h2>登場人物</h2>
       <div class="characters">
-        <div class="character slide-up" data-aos="fade-up" data-aos-delay="100">
+        <div class="character" data-aos="fade-up" data-aos-delay="100">
           <img src="https://via.placeholder.com/100x150" alt="アキラ">
           <div>
             <strong>アキラ</strong><br>
             ほげほげプレースホルダー
           </div>
         </div>
-        <div class="character slide-up" data-aos="fade-up" data-aos-delay="200">
+        <div class="character" data-aos="fade-up" data-aos-delay="200">
           <img src="https://via.placeholder.com/100x150" alt="ローゼ">
           <div>
             <strong>ローゼ</strong><br>
             ふーばープレースホルダー
           </div>
         </div>
-        <div class="character slide-up" data-aos="fade-up" data-aos-delay="300">
+        <div class="character" data-aos="fade-up" data-aos-delay="300">
           <img src="https://via.placeholder.com/100x150" alt="魔王">
           <div>
             <strong>魔王</strong><br>
             ぴよぴよプレースホルダー
           </div>
         </div>
-        <div class="character slide-up" data-aos="fade-up" data-aos-delay="400">
+        <div class="character" data-aos="fade-up" data-aos-delay="400">
           <img src="https://via.placeholder.com/100x150" alt="神">
           <div>
             <strong>神</strong><br>
@@ -319,8 +423,8 @@
 
     <!-- 上演時間 -->
     <section id="schedule" data-aos="fade-up" class="slide-up">
-      <h2 class="slide-up">上演時間</h2>
-      <p class="slide-up">
+      <h2>上演時間</h2>
+      <p>
         ● 開演：2025年7月13日（日）<br>
         ● 昼の部：13:00〜 / 夜の部：18:00〜<br>
         ※開場は各30分前。<br>
@@ -330,16 +434,16 @@
 
     <!-- キャストからの一言 -->
     <section id="cast-message" data-aos="fade-up" class="slide-up">
-      <h2 class="slide-up">キャストからの一言</h2>
-      <p class="slide-up" data-aos="fade-up" data-aos-delay="100">
+      <h2>キャストからの一言</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
         <strong>山田 太郎（和也 役）:</strong><br>
         「誰もが抱える“選択”を、全力で演じました。ぜひ劇場でご覧ください！」<br><br>
       </p>
-      <p class="slide-up" data-aos="fade-up" data-aos-delay="200">
+      <p data-aos="fade-up" data-aos-delay="200">
         <strong>鈴木 花子（リリア 役）:</strong><br>
         「リリアの想いが、あなたの心に届きますように。」<br><br>
       </p>
-      <p class="slide-up" data-aos="fade-up" data-aos-delay="300">
+      <p data-aos="fade-up" data-aos-delay="300">
         <strong>佐藤 一郎（ガルド 役）:</strong><br>
         「この作品を通じて、異世界の深さを感じていただければ幸いです。」
       </p>
@@ -347,8 +451,8 @@
 
     <!-- アクセス -->
     <section id="access" data-aos="fade-up" class="slide-up">
-      <h2 class="slide-up">アクセス</h2>
-      <p class="slide-up">
+      <h2>アクセス</h2>
+      <p>
         ● 会場：○○市民ホール 大ホール<br>
         ● 住所：東京都○○区1-2-3 ○○ビル 4F<br>
         ● 最寄駅：○○駅 東口から徒歩5分<br>
@@ -358,22 +462,27 @@
   </main>
 
   <!-- Footer -->
-  <footer class="slide-up" data-aos="fade-up">
-    &copy; 2025 異世界転生演劇制作委員会
+  <footer class="container slide-up" data-aos="fade-up">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="images/title-logo-small.png" alt="異世界転生演劇" width="120" class="footer-logo-img">
+      </div>
+      <div>
+        <p>&copy; 2025 異世界転生演劇制作委員会</p>
+      </div>
+    </div>
   </footer>
 
   <!-- AOS スクリプト -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // AOS 初期化
       AOS.init({
         duration: 600,
         easing: 'ease-out-quart',
         once: true,
         offset: 120,
       });
-      // IntersectionObserver で .slide-up 要素に in-view を付与
       const els = document.querySelectorAll('.slide-up');
       const io = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
