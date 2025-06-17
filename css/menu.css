@@ -1,220 +1,31 @@
-  <style media="screen">
-    header {
-      position: fixed;
-      z-index: 10;
-      top: 0;
-      right: 0;
-      left: 0;
-      width: 100%;
-      max-width: 1920px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: clamp(20px, 5.333333333333333vw, 40px);
-      -webkit-transition-duration: 300ms;
-      transition-duration: 300ms;
-    }
-
-    @media (min-width: 1025px) {
-      header {
-        padding: clamp(30px, 3.125vw, 60px) clamp(40px, 4.6875vw, 90px);
-      }
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-      header {
-        padding: clamp(10px, 2.998500749625187vw, 20px);
-      }
-    }
-
-    .header-container {
-      display: -ms-grid;
-      display: grid;
-      -webkit-box-align: center;
-      align-items: center;
-      -ms-flex-align: center;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      -ms-grid-columns: 1fr 2fr;
-      grid-template-columns: 1fr 2fr;
-    }
-
-    .header-logo {
-      width: -moz-fit-content;
-      width: -webkit-fit-content;
-      width: fit-content;
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-      .header-logo {
-        width: clamp(70px, 17.991004497751124vw, 140px);
-      }
-    }
-
-    .logo-link {
-      display: block;
-      -webkit-transition-duration: 300ms;
-      transition-duration: 300ms;
-    }
-
-    .logo-link:hover {
-      opacity: 0.6;
-    }
-
-    @media (max-width: 1024px) {
-      .nav-menu {
-        position: fixed;
-        z-index: -1;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-        padding-right: clamp(30px, 8vw, 60px);
-        padding-bottom: clamp(30px, 8vw, 60px);
-        padding-left: clamp(30px, 8vw, 60px);
-        transition-duration: 300ms;
-        transform: translateX(200%);
-        overflow: auto;
-        /* ナビメニューの背景色を変えたい時 */
-        background-color: rgba(0, 0, 0, .6);
-      }
-
-      .nav-menu.active {
-        transform: translateX(0);
-      }
-    }
-
-    @media (min-width: 1025px) {
-      .nav-menu {
-        padding-top: 0 !important;
-      }
-    }
-
-    @media (min-width: 1025px) {
-      .menu-list {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        -ms-flex-align: center;
-        -webkit-box-pack: end;
-        -ms-flex-pack: end;
-        justify-content: flex-end;
-        gap: clamp(20px, 2.0833333333333335vw, 40px);
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .menu-item {
-        /* 各ナビメニューの下線を変えたい時 */
-        border-style: solid;
-        border-color: #fff;
-        border-bottom-width: 1px;
-      }
-    }
-
-    .menu-link {
-      display: block;
-      color: #000;
-      -webkit-transition-duration: 300ms;
-      transition-duration: 300ms;
-    }
-
-    .menu-link:hover {
-      opacity: 0.6;
-    }
-
-    .nav-menu.active .menu-link {
-      color: #fff;
-    }
-
-    @media (max-width: 1024px) {
-      .menu-link {
-        font-size: clamp(14px, 1.0416666666666667vw, 20px);
-        padding-top: clamp(10px, 2.6666666666666665vw, 20px);
-        padding-bottom: clamp(10px, 2.6666666666666665vw, 20px);
-        text-align: center;
-        /* ナビメニューの文字色を変えたい時 */
-        color: #000;
-      }
-    }
-
-    @media (min-width: 1025px) {
-      .menu-link {
-        font-size: clamp(14px, 1.0416666666666667vw, 20px);
-      }
-    }
-
-    .hamburger-button {
-      width: -moz-fit-content;
-      width: -webkit-fit-content;
-      width: fit-content;
-      height: clamp(13px, 3.466666666666667vw, 26px);
-      margin-right: 0;
-      margin-left: auto;
-      cursor: pointer;
-    }
-
-    .hamburger-lines {
-      position: relative;
-      width: clamp(40px, 10.666666666666666vw, 90px);
-      height: clamp(13px, 3.466666666666667vw, 26px);
-      -webkit-transition-duration: 300ms;
-      transition-duration: 300ms;
-    }
-
-    @media (max-width: 1024px) {
-      .hamburger-lines {
-        width: clamp(40px, 10.666666666666666vw, 90px);
-        height: clamp(13px, 3.466666666666667vw, 26px);
-      }
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-      .hamburger-lines {
-        width: clamp(30px, 7.496251874062969vw, 50px);
-        height: clamp(15px, 2.998500749625187vw, 20px);
-      }
-    }
-
-    .hamburger-lines.active {
-      height: 1px;
-    }
-
-    .hamburger-lines .line {
-      position: absolute;
-      right: 0;
-      left: 0;
-      display: block;
-      width: 100%;
-      height: clamp(1px, .26666666666666666vw, 2px);
-      margin: auto;
-      -webkit-transition-duration: 300ms;
-      transition-duration: 300ms;
-      /* ハンバーガーメニューの線の色を変えたい時 */
-      background-color: #000;
-    }
-
-    .hamburger-lines.active .line {
-      /* ハンバーガーメニューオープン時の線の色を変えたい時 */
-      background-color: #fff;
-    }
-
-    .hamburger-lines .line:nth-child(1) {
-      top: 0;
-    }
-
-    .hamburger-lines .line:nth-child(2) {
-      bottom: 0;
-    }
-
-    @media (min-width: 1025px) {
-
-      /* タブレットサイズ以上でハンバーガーメニューを丸ごと非表示 */
-      .hamburger-button {
-        display: none;
-      }
-    }
-  </style>
+.navbar {
+    background: #bac3ff;
+    background: linear-gradient(180deg, rgba(186, 195, 255, 1) 0%, rgba(97, 165, 237, 1) 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 0.5rem 1rem;
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .logo {
+    font-size: 1.2rem;
+}
+.navbar .nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar .nav a {
+    color: white;
+    text-decoration: none;
+}
+.navbar .nav a:hover {
+    text-decoration: underline;
+}

@@ -9,13 +9,15 @@ font-family: 'Noto Sans JP', sans-serif;
 text-align: center;
 }
 
-img {
-    max-width: 75%; /*この記述で画面幅の100%の幅で画像を表示する*/
-    height: auto; /*高さはautoで画像の最適化表示*/
+html, body {
+    margin: 0;
+    padding: 0;
 }
-
-html {
-	min-height: 100%;
+img {
+    max-width : 100%;
+    height: auto; /*高さはautoで画像の最適化表示*/
+    margin: auto;
+  display: block;
 }
 
 .satcol {
@@ -35,10 +37,12 @@ html {
 
 .map {
     position: relative;
-    width: 100%;
-    padding-top: 66.66%%;
+    width: 50%;
+    padding-top: 66.66%;
     /* 16:9のアスペクト比 */
     height: 0;
+    margin: auto;
+  display: block;
 }
 
 .map iframe {
@@ -47,4 +51,9 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
+    
+}
+
+.carousel{
+    max-width: 50%; /*50%の幅で画像を表示する*/
 }
